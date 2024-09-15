@@ -79,10 +79,13 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    implementation("androidx.room:room-runtime:2.6.1")
 
     // To use Kotlin Symbol Processing (KSP)
     ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+
 
     //Hilt
     implementation("com.google.dagger:hilt-android:2.49")
