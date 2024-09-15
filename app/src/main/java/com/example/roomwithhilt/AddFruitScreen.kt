@@ -3,6 +3,7 @@ package com.example.roomwithhilt
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -22,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -57,9 +59,10 @@ fun AddFruitScreen(
             modifier = Modifier
                 .padding(innerPadding)
                 .padding(16.dp)
+                .fillMaxSize()
         ) {
                OutlinedTextField(
-                   modifier = Modifier.fillMaxWidth(),
+                   modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),
                    value = fruitName,
                    onValueChange = {
                        fruitName = it
@@ -85,6 +88,7 @@ fun AddFruitScreen(
                            coroutineScope.launch {
                                fruitViewModel.saveFruit(Fruits(name = fruitName))
                            }
+                           onNavigateUp()
                        }
                    ) {
                        Text(text = "Save")
