@@ -24,14 +24,14 @@ import javax.inject.Inject
 @HiltViewModel
 class ExportRoomViewModel @Inject constructor(
     private val repository: FruitRepository,
-    private val baseFlockApplication: FruitApplication
+    private val baseApplication: FruitApplication
 ) : ViewModel() {
 
     //Export to excel
     suspend fun exportToExcel() {
         try {
             val workbook = XSSFWorkbook()
-            val folder = File(baseFlockApplication.filesDir, "exported_files")
+            val folder = File(baseApplication.filesDir, "exported_files")
             //check if folder exists
             if (!folder.exists()) {
                 folder.mkdirs()
@@ -47,7 +47,7 @@ class ExportRoomViewModel @Inject constructor(
 
                     //Get file uri
                     val fileUri = FileProvider.getUriForFile(
-                        baseFlockApplication.applicationContext,
+                        baseApplication.applicationContext,
                         BuildConfig.APPLICATION_ID + ".fileprovider",
                         file
                     )
@@ -75,7 +75,7 @@ class ExportRoomViewModel @Inject constructor(
                     // Add the viewIntent as an extra option
                     chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(viewIntent))
 
-                    baseFlockApplication.startActivity(chooserIntent)
+                    baseApplication.startActivity(chooserIntent)
 
                 }
             } catch (e: Exception) {
